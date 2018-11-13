@@ -5,6 +5,20 @@ interface Dispatcher {
   forget(event: string, cla?: Function): void
 }
 
+export type ModelEvents =
+  | 'retrieved'
+  | 'creating'
+  | 'created'
+  | 'updating'
+  | 'updated'
+  | 'saving'
+  | 'saved'
+  | 'restoring'
+  | 'restored'
+  | 'deleting'
+  | 'deleted'
+  | 'forceDeleted'
+
 export class HasEvents {
   static dispatcher?: Dispatcher
   /**
