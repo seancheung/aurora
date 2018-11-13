@@ -1,0 +1,48 @@
+{
+  "name": "aurora",
+  "version": "0.1.0",
+  "description": "A simple but powerful javascript/typescript ORM",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint 'src/**/*.ts'",
+    "pretest": "npm run lint",
+    "test": "cross-env TS_NODE_FILES=true mocha -r ts-node/register 'src/**/*.spec.ts'",
+    "prebuild": "del-cli \"lib/**\" \"!lib\"",
+    "build": "tsc -p tsconfig.prod.json",
+    "prerelease": "cpy LICENSE \"package*.json\" \"*.md\" lib",
+    "release": "npm publish lib",
+    "postrelease": "del-cli \"lib/LICENSE\" \"lib/package*.json\" \"lib/*.md\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typolarjs/aurora.git"
+  },
+  "keywords": [
+    "typolar",
+    "orm",
+    "laravel",
+    "database",
+    "model"
+  ],
+  "author": "Sean Cheung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typolarjs/aurora/issues"
+  },
+  "homepage": "https://github.com/typolarjs/aurora#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "cpy-cli": "^2.0.0",
+    "cross-env": "^5.2.0",
+    "del-cli": "^1.1.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.15.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-consistent-codestyle": "^1.14.1",
+    "typescript": "^3.1.6"
+  }
+}
