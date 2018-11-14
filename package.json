@@ -32,6 +32,7 @@
   "homepage": "https://github.com/typolarjs/aurora#readme",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/knex": "^0.15.0",
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "cpy-cli": "^2.0.0",
@@ -44,5 +45,8 @@
     "tslint-config-prettier": "^1.16.0",
     "tslint-consistent-codestyle": "^1.14.1",
     "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "knex": "^0.15.2"
   }
 }

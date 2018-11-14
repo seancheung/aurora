@@ -39,6 +39,7 @@
         "singleline": "never"
       }
     ],
+    "ban-types": false,
     /*consistent*/
     "naming-convention": [
       true,
