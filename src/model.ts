@@ -1,10 +1,11 @@
 // tslint:disable:ban-types
 
-import { GuardsAttributes, HasEvents } from './concerns'
+import { GuardsAttributes, HasAttributes, HasEvents } from './concerns'
 import { getMixins, mixin } from './utils'
 
 @mixin(HasEvents)
 @mixin(GuardsAttributes)
+@mixin(HasAttributes)
 export abstract class Model {
   /**
    * The name of the "created at" column.
@@ -218,14 +219,18 @@ export abstract class Model {
    * @param attributes Attributes
    */
   protected fill(attributes: Record<string, any>) {
-    const guard: GuardsAttributes = this as any
-    const totallyGuarded = guard.totallyGuarded()
+    const totallyGuarded = ((this as any) as GuardsAttributes).totallyGuarded()
     for (let key of this.fillableFromArray(Object.keys(attributes))) {
       key = this.removeTableFromKey(key)
-      if (guard.isFillable(key)) {
-        // TODO:
+      if (((this as any) as GuardsAttributes).isFillable(key)) {
+        ((this as any) as HasAttributes).setAttribute(key, attributes[key])
+      } else if (totallyGuarded) {
+        throw new Error(
+          'Add [%s] to fillable property to allow mass assignment on [%s].'
+        )
       }
     }
+    return this
   }
 
   /**
